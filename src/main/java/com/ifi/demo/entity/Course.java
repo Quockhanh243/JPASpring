@@ -1,6 +1,8 @@
 package com.ifi.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,6 +23,7 @@ public class Course {
 
     @JsonIgnore
     @OneToMany(mappedBy = "course")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     Set<CourseRegistration> courseRegistrations;
     public Course() {
     }

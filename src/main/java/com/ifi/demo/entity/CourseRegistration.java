@@ -15,12 +15,12 @@ public class CourseRegistration {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_Student")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Student student;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Id_Course")
-    @OnDelete(action = OnDeleteAction.CASCADE)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Course course;
 
     @Column(name = "start_date")
