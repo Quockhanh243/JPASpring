@@ -23,7 +23,7 @@ public class Student {
     private Date birth;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     Set<CourseRegistration> courseRegistration;
 

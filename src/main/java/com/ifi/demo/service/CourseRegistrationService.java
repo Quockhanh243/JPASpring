@@ -26,8 +26,7 @@ public class CourseRegistrationService {
     }
 
     public CourseRegistration CreateCourseRegistration(CourseRegistration courseRegistration){
-        CourseRegistration _courseRegistration = courseRegistrationRepository.save(new CourseRegistration(courseRegistration.getStudent(),
-                courseRegistration.getCourse(),courseRegistration.getStartDate(),courseRegistration.getEndDate()));
+        CourseRegistration _courseRegistration = courseRegistrationRepository.save(courseRegistration);
         System.out.println("Course Registration Created....");
         return _courseRegistration;
     }

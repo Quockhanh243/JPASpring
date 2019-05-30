@@ -1,10 +1,8 @@
 package com.ifi.demo.entity;
 
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class CourseRegistration {
@@ -13,26 +11,24 @@ public class CourseRegistration {
     @Column(name = "id_CourseReg")
     private int id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "Id_Student")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Student student;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "Id_Course")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Course course;
 
     @Column(name = "start_date")
-    LocalDateTime startDate;
+    Date startDate;
 
     @Column(name = "end_date")
-    LocalDateTime endDate;
+    Date endDate;
 
     public CourseRegistration() {
     }
 
-    public CourseRegistration(Student student, Course course, LocalDateTime startDate, LocalDateTime endDate) {
+    public CourseRegistration(Student student, Course course, Date startDate, Date endDate) {
         this.student = student;
         this.course = course;
         this.startDate = startDate;
@@ -63,19 +59,19 @@ public class CourseRegistration {
         this.course = course;
     }
 
-    public LocalDateTime getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDateTime startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDateTime getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 }

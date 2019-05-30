@@ -6,12 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class StudentService {
 
     @Autowired
@@ -45,8 +47,15 @@ public class StudentService {
 
         if(studentData.isPresent()){
             Student _student = studentData.get();
-            _student.setName(student.getName());
-            _student.setBirth(student.getBirth());
+            if(student.getName()!=null)
+            {
+                System.out.println(student.getName());
+                _student.setName(student.getName());
+            }
+            if (student.getBirth()!=null)
+            {
+                _student.setBirth(student.getBirth());
+            }
             studentRepository.save(_student);
         }
 

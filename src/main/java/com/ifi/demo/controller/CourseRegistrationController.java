@@ -23,6 +23,7 @@ public class CourseRegistrationController {
 
     @PostMapping("/create")
     public CourseRegistration createCourseRegs(@RequestBody CourseRegistration courseRegistration){
+        System.out.println(courseRegistration.getCourse().getName());
         return courseRegistrationService.CreateCourseRegistration(courseRegistration);
     }
 

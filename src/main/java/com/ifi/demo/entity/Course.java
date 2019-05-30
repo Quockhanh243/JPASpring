@@ -22,7 +22,7 @@ public class Course {
     private String fee;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
     Set<CourseRegistration> courseRegistrations;
     public Course() {
