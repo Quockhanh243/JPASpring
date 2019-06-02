@@ -1,49 +1,41 @@
 package com.ifi.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Set;
+import java.sql.Timestamp;
+import java.util.Collection;
 
 @Entity
-@Table(name = "Student")
+@Table(name = "student")
 public class Student {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id_Student")
-    private int id;
-
-    @Column(name = "name")
+    private int idStudent;
+    private Timestamp birth;
     private String name;
+    private Collection<CourseRegistration> courseRegistrationsByIdStudent;
 
-    @Column(name = "birth")
-    private Date birth;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    Set<CourseRegistration> courseRegistration;
-
-    public Student() {
-
+    @Id
+    @Column(name = "id_student")
+    public int getIdStudent() {
+        return idStudent;
     }
 
-    public Student(String name, Date birth) {
-        this.name = name;
+    public void setIdStudent(int idStudent) {
+        this.idStudent = idStudent;
+    }
+
+    @Basic
+    @Column(name = "birth")
+    public Timestamp getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Timestamp birth) {
         this.birth = birth;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    @Basic
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -52,19 +44,43 @@ public class Student {
         this.name = name;
     }
 
-    public Date getBirth() {
-        return birth;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Student student = (Student) o;
+
+        if (idStudent != student.idStudent) return false;
+        if (birth != null ? !birth.equals(student.birth) : student.birth != null) return false;
+        if (name != null ? !name.equals(student.name) : student.name != null) return false;
+
+        return true;
     }
 
-    public void setBirth(Date birth) {
+    @Override
+    public int hashCode() {
+        int result = idStudent;
+        result = 31 * result + (birth != null ? birth.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @OneToMany(mappedBy = "studentByIdStudentss")
+    @JsonIgnore
+    public Collection<CourseRegistration> getCourseRegistrationsByIdStudent() {
+        return courseRegistrationsByIdStudent;
+    }
+
+    public void setCourseRegistrationsByIdStudent(Collection<CourseRegistration> courseRegistrationsByIdStudent) {
+        this.courseRegistrationsByIdStudent = courseRegistrationsByIdStudent;
+    }
+
+    public Student( String name, Timestamp birth) {
         this.birth = birth;
+        this.name = name;
     }
 
-    public Set<CourseRegistration> getCourseRegistration() {
-        return courseRegistration;
-    }
-
-    public void setCourseRegistrationSet(Set<CourseRegistration> courseRegistration) {
-        this.courseRegistration = courseRegistration;
+    public Student() {
     }
 }

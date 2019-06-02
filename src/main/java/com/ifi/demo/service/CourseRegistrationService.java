@@ -46,8 +46,8 @@ public class CourseRegistrationService {
 
         if(courseRegistrationData.isPresent()){
             CourseRegistration _courseRegistration = courseRegistrationData.get();
-            _courseRegistration.setStudent(courseRegistration.getStudent());
-            _courseRegistration.setCourse(courseRegistration.getCourse());
+            _courseRegistration.setStudentByIdStudentss(courseRegistration.getStudentByIdStudentss());
+            _courseRegistration.setCourseByIdCourse(courseRegistration.getCourseByIdCourse());
             _courseRegistration.setStartDate(courseRegistration.getStartDate());
             _courseRegistration.setEndDate(courseRegistration.getEndDate());
             courseRegistrationRepository.save(_courseRegistration);
