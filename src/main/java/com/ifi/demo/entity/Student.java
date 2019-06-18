@@ -15,6 +15,7 @@ public class Student {
     private Collection<CourseRegistration> courseRegistrationsByIdStudent;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_student")
     public int getIdStudent() {
         return idStudent;
