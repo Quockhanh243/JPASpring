@@ -2,13 +2,14 @@ package com.ifi.demo.entity;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "course_registration")
 public class CourseRegistration {
     private int idCourseReg;
-    private Timestamp endDate;
-    private Timestamp startDate;
+    private Date endDate;
+    private Date startDate;
     private Course courseByIdCourse;
     private Student studentByIdStudentss;
 
@@ -25,21 +26,21 @@ public class CourseRegistration {
 
     @Basic
     @Column(name = "end_date")
-    public Timestamp getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Timestamp endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
     @Basic
     @Column(name = "start_date")
-    public Timestamp getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Timestamp startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 

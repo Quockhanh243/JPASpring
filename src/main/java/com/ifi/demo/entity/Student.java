@@ -5,12 +5,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 
 @Entity
 @Table(name = "student")
 public class Student {
     private int idStudent;
-    private Timestamp birth;
+    private Date birth;
     private String name;
     private Collection<CourseRegistration> courseRegistrationsByIdStudent;
 
@@ -27,11 +28,11 @@ public class Student {
 
     @Basic
     @Column(name = "birth")
-    public Timestamp getBirth() {
+    public Date getBirth() {
         return birth;
     }
 
-    public void setBirth(Timestamp birth) {
+    public void setBirth(Date birth) {
         this.birth = birth;
     }
 
@@ -77,7 +78,7 @@ public class Student {
         this.courseRegistrationsByIdStudent = courseRegistrationsByIdStudent;
     }
 
-    public Student( String name, Timestamp birth) {
+    public Student( String name, Date birth) {
         this.birth = birth;
         this.name = name;
     }
